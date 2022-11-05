@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "nfc-demo-app",
-    "slug": "nfc-demo-app",
+    "name": "studio-app",
+    "slug": "studio-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,7 +18,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.camillus.k.studioapp"
     },
     "android": {
       "adaptiveIcon": {
@@ -28,6 +29,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "1c7eb9db-11ea-4577-96b3-825cfdfeb1d4"
+      }
     }
   }
 }
