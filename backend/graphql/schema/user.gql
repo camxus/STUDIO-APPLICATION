@@ -1,0 +1,65 @@
+module.exports = `
+  type FullName {
+    first_name: String
+    last_name: String
+  }
+  
+  input FullNameInput {
+    first_name: String
+    last_name: String
+  }
+
+  type Key {
+    door_name: String
+    owner_id: ID!
+    temporary_password: String
+    exp_date: String
+  }
+
+  type Booking {
+    booking_id: ID!
+  }
+
+  input AttributesInput {
+    username: String
+    verified: Boolean
+    subscription_status: ID
+    credits: Int
+    birthdate: String
+    name: FullNameInput
+  }
+
+  type Attributes {
+    username: String
+    verified: Boolean
+    subscription_status: ID
+    credits: Int
+    birthdate: String
+    name: FullName
+  }
+
+  type User {
+    _id: ID!
+    email: String
+    password: String
+    attributes: Attributes
+    bookings: [Booking]
+    keys: [Key]
+    deactivated: Boolean
+  }
+
+  # AUTH
+  type AuthData {
+    userId: ID!
+    token: String!
+    refreshToken: String
+    tokenExpiration: Int!
+  }
+
+  # INPUT
+  input UserInput {
+    email: String!
+    password: String!
+    attributes: AttributesInput
+  }
+`

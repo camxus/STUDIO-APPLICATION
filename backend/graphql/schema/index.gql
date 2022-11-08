@@ -1,0 +1,26 @@
+module.exports = `
+  # QUERY  
+  type RootQuery {
+    refreshToken(refreshToken: String): String
+    login(email: String! password: String!): AuthData!
+
+    checkUsernames(username: String): String
+    checkEmails(email: String): String
+
+    user(username: String): User
+    userById(ID: ID!): User
+    me: User
+  }
+
+  # MUTATION  
+  type RootMutation {
+    createUser(userInput: UserInput): User
+    deactivateUser: String
+    deleteUser: String
+  }
+
+  schema {
+    query: RootQuery
+    mutation: RootMutation
+  }
+`

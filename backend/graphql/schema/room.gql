@@ -1,0 +1,14 @@
+module.exports = `
+  type RoomBooking {
+    created_by: ID,
+    assotiated_users: [ID]
+    appointment_id: ID
+    from: String,
+    to: String
+  }
+  type Room {
+    _id: ID
+    name: String
+    bookings: [RoomBooking]
+  }
+`

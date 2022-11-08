@@ -1,0 +1,7 @@
+module.exports = `
+  type Subscription {
+    _id: ID!
+    name: String
+    price: Float
+  }
+`
