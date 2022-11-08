@@ -21,7 +21,6 @@ module.exports = `
   }
 
   input AttributesInput {
-    username: String
     verified: Boolean
     subscription_status: ID
     credits: Int
@@ -30,7 +29,6 @@ module.exports = `
   }
 
   type Attributes {
-    username: String
     verified: Boolean
     subscription_status: ID
     credits: Int
@@ -42,6 +40,7 @@ module.exports = `
     _id: ID!
     email: String
     password: String
+    username: String
     attributes: Attributes
     bookings: [Booking]
     keys: [Key]

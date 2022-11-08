@@ -14,11 +14,12 @@ interface Props extends TextInputProps {
   label?: string;
   labelStyle?: TextStyle;
   error?: any;
+  showSuccess?: boolean
 }
 
 export default React.forwardRef<any, Props>(
   (props, ref): React.ReactElement => {
-    const { label, labelStyle, error, ...inputProps } = props;
+    const { label, labelStyle, error, showSuccess, ...rest } = props;
 
     return (
       <View style={styles.container}>
@@ -26,10 +27,10 @@ export default React.forwardRef<any, Props>(
         <TextInput
           autoCapitalize="none"
           ref={ref}
-          style={[styles.input, { borderColor: error ? '#fc6d47' : 'rgba(0,0,0,0.2)' }]}
-          {...inputProps}
+          style={[styles.input, { borderColor: error ? '#fc6d47' : (showSuccess && (!error?.message && rest.value)) ? '#5cb85c' : 'rgba(0,0,0,0.2)' }]}
+          {...rest}
         />
-        <Text style={styles.textError}>{error && error.message}</Text>
+        {/* <Text style={styles.textError}>{error && error.message}</Text> */}
       </View>
     );
   }

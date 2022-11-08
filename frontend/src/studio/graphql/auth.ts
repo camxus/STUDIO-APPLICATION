@@ -25,3 +25,15 @@ mutation CreateUser(
         }
     }
 `;
+
+export const CHECK_USERNAME = `
+    query checkUsernames($username: String!) {
+        checkUsernames(username: $username)
+    }
+`;
+
+export const CHECK_EMAIL = `
+    query checkEmails($email: String!) {
+        checkEmails(email: $email)
+    }
+`;

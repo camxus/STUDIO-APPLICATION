@@ -27,7 +27,8 @@ module.exports = {
   },
   checkUsernames: async ({username}) => {
     try {
-      const existingUser = await User.findOne({"attributes.username": username})
+      const existingUser = await User.findOne({username: username})
+      console.log(existingUser)
       if (existingUser) {
         throw new Error('USERNAME_TAKEN')
       }

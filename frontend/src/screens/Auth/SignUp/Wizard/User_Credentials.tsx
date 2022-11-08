@@ -1,33 +1,59 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TouchableWithoutFeedback,
-  Keyboard,
-} from "react-native";
+import { View, Text, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { Button, KeyboardAwareScrollView } from "react-native-ui-lib";
 import Input from "../../components/Input";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import { isObjEmpty } from "../../../../utilities/utils";
+import { gql } from "../../../../utilities/hooks/useAxiousInstance";
+import { CHECK_EMAIL, CHECK_USERNAME } from "../../../../studio/graphql/auth";
 
 function User_Credentials({ setUserData, navigation, wizard }) {
   const FIELDS = [
     {
       name: "email",
       label: "Email",
+      showSuccess: true,
       yup: yup
         .string()
         .email("Must be a valid email")
-        .required("Email Required"),
+        .required("Email Required")
+        .test(
+          "email",
+          "An account is already using this email",
+          async function (email) {
+            try {
+              await gql(CHECK_EMAIL, { email });
+              return true;
+            } catch (e) {
+              return false;
+            }
+          }
+        ),
     },
     {
       name: "username",
       label: "Username",
+      showSuccess: true,
       yup: yup
         .string()
         .required("Username Required")
-        .matches(/^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/, "Must be valid username"),
+        .matches(
+          /^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/,
+          "Must be valid username"
+        )
+        .test(
+          "username",
+          "An account is already using this username",
+          async function (username) {
+            try {
+              await gql(CHECK_USERNAME, { username });
+              return true;
+            } catch (e) {
+              return false;
+            }
+          }
+        ),
     },
     {
       name: "password",
@@ -55,7 +81,8 @@ function User_Credentials({ setUserData, navigation, wizard }) {
 
   const formik = useFormik({
     initialValues: Object.fromEntries(FIELDS.map((field) => [field.name, ""])),
-    validateOnChange: true,
+    validateOnChange: false,
+    validateOnBlur: true,
     validationSchema: yup
       .object()
       .shape(
@@ -68,7 +95,7 @@ function User_Credentials({ setUserData, navigation, wizard }) {
         email: values.email,
         password: values.password,
       }));
-      wizard.current.next()
+      wizard.current.next();
     },
   });
 
@@ -84,6 +111,8 @@ function User_Credentials({ setUserData, navigation, wizard }) {
               onBlur={formik.handleBlur(field.name)}
               value={formik.values[field.name]}
               onChangeText={formik.handleChange(field.name)}
+              error={formik.errors[field.name]}
+              showSuccess={field.showSuccess}
             />
             {formik.errors[field.name] && (
               <Text className="text-xs text-red-500">

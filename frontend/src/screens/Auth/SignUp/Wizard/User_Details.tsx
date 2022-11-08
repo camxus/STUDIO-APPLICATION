@@ -50,7 +50,8 @@ function User_Credentials({ setUserData, navigation, wizard }) {
       ...Object.fromEntries(FIELDS.map((field) => [field.name, ""])),
       birthdate: new Date(),
     },
-    validateOnChange: true,
+    validateOnChange: false,
+    validateOnBlur: true,
     validationSchema: yup.object().shape({
       ...Object.fromEntries(FIELDS.map((field) => [field.name, field.yup])),
       birthdate: yup

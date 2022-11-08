@@ -42,7 +42,7 @@ app.use(
 
 mongoose
   .connect(
-    `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.jc9bm.mongodb.net/${process.env.MONGO_DB}?retryWrites=true`,
+    `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.${process.env.CLUSTER}.mongodb.net/${process.env.MONGO_DB}?retryWrites=true`,
     { useNewUrlParser: true }
   )
   .then(() => {

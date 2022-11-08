@@ -17,13 +17,12 @@ const userSchema = new Schema({
     required: true,
     trim: true,
   },
+  username: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   attributes: {
-    username: {
-      type: String,
-      required: false,
-      default: "",
-      trim: true,
-    },
     verified: {
       type: Boolean,
       default: false,
