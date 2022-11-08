@@ -2,7 +2,7 @@ import { View, Text } from "react-native";
 import WebView from "react-native-webview";
 import { useWebViewMessage } from "react-native-react-bridge";
 import React from "react";
-import Paypal from "../../../Paypal";
+import Paypal from "../../../ReactNetiveWebView/Paypal";
 
 const Payment = ({ navigation }) => {
   // useWebViewMessage hook create props for WebView and handle communication

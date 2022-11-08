@@ -23,7 +23,7 @@ const AddCredits = ({ navigation }) => {
     navigation.navigate("Payment")
   };
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss} accessible={false}>
       <SafeAreaView>
         <Layout header navigation={navigation} />
         <View className="w-full h-full flex justify-center items-center">

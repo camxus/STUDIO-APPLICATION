@@ -39,7 +39,7 @@ function User_Credentials({ setUserData, navigation, wizard }) {
         .string()
         .required("Username Required")
         .matches(
-          /^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/,
+          /^(?=[a-zA-Z0-9._]{3,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/,
           "Must be valid username"
         )
         .test(

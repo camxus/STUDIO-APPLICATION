@@ -32,7 +32,7 @@ module.exports = {
   user: async (args, req) => {
     try {
       const user =
-        (await User.findOne({ "attributes.username": args.username })) ??
+        (await User.findOne({ "username": args.username })) ??
         (await User.findOne({ email: args.username }));
 
       if (!user) {
