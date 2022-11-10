@@ -1,4 +1,5 @@
 const User = require("../../models/user");
+const Subscripiton = require("../../models/subscription");
 
 const transformUser = (user) => {
   return {
@@ -89,11 +90,54 @@ module.exports = {
         throw new Error("USER_NOT_FOUND");
       }
 
-      User.deleteById(user._doc._id);
+      await User.deleteById(user._doc._id);
+
+      return "deleted";
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  addCredits: async (args, req) => {
+    try {
+      const user = await User.findById(req.userId);
+
+      if (!user) {
+        throw new Error("USER_NOT_FOUND");
+      }
+
+      user.attributes["credits"] += args.amount
 
       user.save();
 
-      return "deleted";
+      return {
+        ...transformUser(user)
+      };
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  changeSubscription: async (args, req) => {
+    try {
+      const user = await User.findById(req.userId);
+      const subscription = await Subscripiton.findById(args.subscription_id);
+
+      if (!user) {
+        throw new Error("USER_NOT_FOUND");
+      }
+
+      if (!subscription) {
+        throw new Error("SUBSCRIPITON_NOT_FOUND");
+      }
+
+      user.attributes["subscription_id"] = args.subscription_id
+
+      user.save();
+
+      return {
+        ...transformUser(user)
+      };
     } catch (err) {
       throw err;
     }

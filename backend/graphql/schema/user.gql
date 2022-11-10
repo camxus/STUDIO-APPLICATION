@@ -16,7 +16,7 @@ module.exports = `
     exp_date: String
   }
 
-  type Booking {
+  type UserBooking {
     booking_id: ID!
   }
 
@@ -42,7 +42,7 @@ module.exports = `
     password: String
     username: String
     attributes: Attributes
-    bookings: [Booking]
+    bookings: [UserBooking]
     keys: [Key]
     deactivated: Boolean
   }

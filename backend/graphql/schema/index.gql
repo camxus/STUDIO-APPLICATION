@@ -10,6 +10,13 @@ module.exports = `
     user(username: String): User
     userById(ID: ID!): User
     me: User
+
+    bookings: [Booking]
+    bookingsByDate(date: String): [Booking]
+
+    rooms: [Room]
+
+    subscripitonModels: [Subscription]
   }
 
   # MUTATION  
@@ -17,6 +24,13 @@ module.exports = `
     createUser(userInput: UserInput): User
     deactivateUser: String
     deleteUser: String
+
+    createBooking(bookingInput: BookingInput): String
+    removeBooking(booking_id: String): String
+
+    addCredits(amount: Float): String
+
+    changeSubscription(subscription_id: ID): User
   }
 
   schema {
