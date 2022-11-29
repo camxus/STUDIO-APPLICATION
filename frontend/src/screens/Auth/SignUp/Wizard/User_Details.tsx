@@ -132,6 +132,7 @@ function User_Credentials({ setUserData, navigation, wizard }) {
                 width: "100%",
                 backgroundColor: "white",
               }}
+              themeVariant="light"
               value={formik.values["birthdate"]}
               onChange={(e) =>
                 formik.setFieldValue(

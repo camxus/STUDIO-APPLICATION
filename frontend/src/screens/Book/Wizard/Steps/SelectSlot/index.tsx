@@ -26,7 +26,10 @@ const MONTHNAMES = [
 
 const SelectSlot = ({ wizard, date, form, setForm, handleSubmit }) => {
   const month = MONTHNAMES[date.getMonth()];
-  const day = useMemo(() => date.getUTCDate(), [date]);
+  const day = useMemo(() => {
+    return date.getDate()
+  }, [date]);
+
   const slots = useMemo(() => {
     const _slots = [];
     for (let i = 0; i < 24; i++) {

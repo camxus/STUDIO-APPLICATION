@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import React, { useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 // import Wizard
 import Wizard from "react-native-wizard";
 import ChooseRoom from "./Wizard/Steps/ChooseRoom";
@@ -31,6 +31,10 @@ const Book = ({ navigation }) => {
     });
     navigation.navigate("Home");
   };
+
+  useEffect(() => {
+    console.log(date)
+  }, [date])
 
   const stepList = [
     {

@@ -53,7 +53,7 @@ export default function App() {
       // if (isObjEmpty(me)) {
       //   dispatch(getMe());
       // }
-      setIsLogin(true);
+      setIsLogin(false);
       setIsLoaded(true);
     } catch (e) {
       setIsLogin(false);

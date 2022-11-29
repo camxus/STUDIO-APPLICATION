@@ -6,6 +6,7 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
+  TouchableOpacity,
 } from "react-native";
 import React, { useMemo, useState } from "react";
 import Layout from "../../studio/components/Buttons/Layout";
@@ -20,44 +21,44 @@ const AddCredits = ({ navigation }) => {
 
   const handleAddCredits = () => {
     // TODO credits api
-    navigation.navigate("Payment")
+    navigation.navigate("Payment");
   };
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss} accessible={false}>
-      <SafeAreaView>
-        <Layout header navigation={navigation} />
-        <View className="w-full h-full flex justify-center items-center">
-          <KeyboardAvoidingView>
-            <Text className="font-black text-4xl italic uppercase">
-              Add Credits
-            </Text>
-            <View className="w-full flex flex-row h-[100]">
-              <View>
-                <Text className="font-black text-3xl italic uppercase">
-                  Amount
-                </Text>
-                <Text className="font-black text-md italic uppercase">
-                  Price: EUR {price}
-                </Text>
+    <SafeAreaView>
+      <Layout header navigation={navigation} />
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+          <View className="w-full h-full flex justify-center items-center">
+            <KeyboardAvoidingView behavior="padding">
+              <Text className="font-black text-4xl italic uppercase">
+                Add Credits
+              </Text>
+              <View className="w-full flex flex-row h-[100]">
+                <View>
+                  <Text className="font-black text-3xl italic uppercase">
+                    Amount
+                  </Text>
+                  <Text className="font-black text-md italic uppercase">
+                    Price: EUR {price}
+                  </Text>
+                </View>
+                <View>
+                  <TextInput
+                    className="text-7xl font-black italic flex-auto"
+                    value={amount}
+                    placeholder="0"
+                    keyboardType="numeric"
+                    maxLength={2}
+                    onChangeText={(num) => {
+                      setAmount(+num);
+                    }}
+                  />
+                </View>
               </View>
-              <View>
-                <TextInput
-                  className="text-7xl font-black italic flex-auto"
-                  value={amount}
-                  placeholder="0"
-                  keyboardType="numeric"
-                  maxLength={2}
-                  onChangeText={(num) => {
-                    setAmount(+num);
-                  }}
-                />
-              </View>
-            </View>
-          </KeyboardAvoidingView>
-        </View>
-        <ProceedButton content="Save" onPress={() => handleAddCredits()} />
-      </SafeAreaView>
-    </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
+          </View>
+        </TouchableWithoutFeedback>
+      <ProceedButton content="Save" onPress={() => handleAddCredits()} />
+    </SafeAreaView>
   );
 };
 
