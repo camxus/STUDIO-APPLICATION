@@ -5,7 +5,7 @@ import axios from "axios"
 // Next we make an 'instance' of axios
 export const axiosInstance = axios.create({
   // .. where we make our configurations
-  baseURL: "http://192.168.0.101:8000/graphql"
+  baseURL: "http://localhost:8000/graphql"
 })
 
 // ** intercept the axiosInstance for all requests or responses before they are handled by then or catch.

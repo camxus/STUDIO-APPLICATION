@@ -22,6 +22,10 @@ function User_Credentials({ setUserData, navigation, wizard, handleSubmit }) {
   // TODO GET FROM GQL
   const SUBSCRIPITON_MODELS = [
     {
+      _id: null,
+      name: "NONE"
+    },
+    {
       _id: "1",
       name: "AUDIO BASIC",
       price: "€154",
@@ -52,15 +56,16 @@ function User_Credentials({ setUserData, navigation, wizard, handleSubmit }) {
     initialValues: {
       subscription_id: "",
     },
-    validateOnChange: true,
+    validateOnChange: false,
+    validateOnBlur: true,
     validationSchema: yup.object().shape({
-      subscription_id: yup
-        .string()
-        .test("subscription_id", "Must be in list", function (subscription_id) {
-          return SUBSCRIPITON_MODELS.find((s) => s._id === subscription_id)
-            ? true
-            : false;
-        }),
+      // subscription_id: yup
+      //   // .string()
+      //   .test("subscription_id", "Must be in list", function (subscription_id) {
+      //     return SUBSCRIPITON_MODELS.find((s) => s._id === subscription_id)
+      //       ? true
+      //       : false;
+      //   }),
     }),
     onSubmit: async (values) => {
       setUserData((userData) => ({

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { Button, KeyboardAwareScrollView } from "react-native-ui-lib";
 import Input from "../../components/Input";
@@ -111,7 +111,7 @@ function User_Credentials({ setUserData, navigation, wizard }) {
               onBlur={formik.handleBlur(field.name)}
               value={formik.values[field.name]}
               onChangeText={formik.handleChange(field.name)}
-              error={formik.errors[field.name]}
+              error={formik.touched[field.name] && formik.errors[field.name]}
               showSuccess={field.showSuccess}
             />
             {formik.errors[field.name] && (

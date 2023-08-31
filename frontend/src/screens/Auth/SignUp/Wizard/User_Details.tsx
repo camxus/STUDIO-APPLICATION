@@ -51,7 +51,7 @@ function User_Credentials({ setUserData, navigation, wizard }) {
       birthdate: new Date(),
     },
     validateOnChange: false,
-    validateOnBlur: true,
+    validateOnBlur: false,
     validationSchema: yup.object().shape({
       ...Object.fromEntries(FIELDS.map((field) => [field.name, field.yup])),
       birthdate: yup
@@ -106,6 +106,7 @@ function User_Credentials({ setUserData, navigation, wizard }) {
         <Pressable onPress={() => setDialogOpen(true)}>
           <View pointerEvents="none">
             <Input
+              disabled
               name="birthdate"
               label="Birthdate"
               value={formik.values["birthdate"].toDateString()}

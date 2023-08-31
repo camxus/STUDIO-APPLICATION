@@ -12,11 +12,13 @@ export const CREATE_USER = `
 mutation CreateUser(
     $email: String!,
     $password: String!
+    $username: String!
     $attributes: AttributesInput
     ) {
         createUser(userInput: {
             email: $email,
             password: $password,
+            username: $username
             attributes: $attributes
         }) 
         {

@@ -59,6 +59,7 @@ module.exports = `
   input UserInput {
     email: String!
     password: String!
+    username: String!
     attributes: AttributesInput
   }
 `

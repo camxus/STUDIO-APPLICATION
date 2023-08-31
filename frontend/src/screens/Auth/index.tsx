@@ -61,17 +61,16 @@ const LoginV1 = ({ setAuthState, navigation }) => {
     initialValues: {
       ...Object.fromEntries(FIELDS.map((field) => [field.name, ""])),
     },
-    validateOnChange: true,
+    validateOnChange: false,
+    validateOnBlur: false,
     validationSchema: yup.object().shape({
       ...Object.fromEntries(FIELDS.map((field) => [field.name, field.yup])),
     }),
     onSubmit: async (values: any) => {
       try {
-        console.log(values);
         setLoading(true);
         const variables = { email: values.email, password: values.password };
         const res = await gql(LOGIN, variables);
-        console.log(res);
         const {
           data: {
             login: { token, userId, tokenExpiration },

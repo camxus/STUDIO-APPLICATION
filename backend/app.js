@@ -41,11 +41,16 @@ app.use(
 );
 
 mongoose
+  // .connect(
+  //   `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.${process.env.CLUSTER}.mongodb.net/${process.env.MONGO_DB}?retryWrites=true`,
+  //   { useNewUrlParser: true }
+  // )
   .connect(
-    `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.${process.env.CLUSTER}.mongodb.net/${process.env.MONGO_DB}?retryWrites=true`,
+    `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@ac-rrqbqby-shard-00-00.${process.env.CLUSTER}.mongodb.net:27017,ac-rrqbqby-shard-00-01.${process.env.CLUSTER}.mongodb.net:27017,ac-rrqbqby-shard-00-02.${process.env.CLUSTER}.mongodb.net:27017/?replicaSet=atlas-xetkx1-shard-0&authSource=admin&tls=true&appName=mongosh+1.10.6`,
     { useNewUrlParser: true }
   )
   .then(() => {
+    console.log("connected")
     app.listen(8000);
   })
   .catch((err) => {

@@ -51,6 +51,7 @@
     "react-native-wizard": "^2.1.0",
     "react-paypal-button-v2": "^2.6.3",
     "tailwindcss": "^3.2.1",
+    "typescript": "^4.6.3",
     "yup": "^0.32.11"
   },
   "devDependencies": {

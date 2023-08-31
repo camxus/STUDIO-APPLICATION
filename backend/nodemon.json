@@ -1,7 +1,7 @@
 {
     "env": {
         "MONGO_USER": "studio_user",
-        "MONGO_PASSWORD": "gsDwCYir6D0NHUPH",
+        "MONGO_PASSWORD": "Ro1rfLjjLuZbombM",
         "CLUSTER": "wp6u0nw",
         "MONGO_DB": "test"
     }
